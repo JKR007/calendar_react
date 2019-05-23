@@ -9,7 +9,8 @@ class AppointmentsController < ApplicationController
 
     # we need to send latest set of Records in our response from
     # the action
-    @appointments = Appointment.order(appointment_time: :ASC)
+    # @appointments = Appointment.order(appointment_time: :ASC)
+    redirect_to :root
   end
 
   private
