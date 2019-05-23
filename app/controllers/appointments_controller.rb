@@ -5,12 +5,13 @@ class AppointmentsController < ApplicationController
   end
 
   def create
-    @appointment = Appointment.create(appointment_params)
+    @appointment = Appointment.new(appointment_params)
 
-    # we need to send latest set of Records in our response from
-    # the action
-    # @appointments = Appointment.order(appointment_time: :ASC)
-    redirect_to :root
+    if @appointment.save
+      render json: @appointment
+    else
+      render json: @appointment.errors, status: :unprocessable_entity
+    end
   end
 
   private
